@@ -10,7 +10,7 @@ class Merchant
   end
 
   def merchants
-    FindByName.new(@data[:merchants][:name])
+  
   end
 
 

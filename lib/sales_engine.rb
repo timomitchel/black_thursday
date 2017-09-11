@@ -1,19 +1,19 @@
 require './lib/merchants'
 require 'csv'
-require "./data/merchants.csv"
-require "./data/items.csv"
+require "pry"
 class SalesEngine
 
-  def initialize
-    @hash = @hash
-
+  attr_reader :hash
+  def initialize(hash)
+    @hash = hash
   end
 
-  def self.from_csv(files_hash)
-    data = files_hash.each_pair do |key, value|
-      value = CSV.open "#{value}", headers: true, header_converters: :symbol
-    end
-    Merchants.new(data)
+  def self.from_csv(hash)
+    SalesEngine.new(hash)
+  end
+
+  def merchants
+    hash[:merchants]
   end
 
 end
@@ -21,5 +21,4 @@ se = SalesEngine.from_csv({
   :items     => "./data/items.csv",
   :merchants => "./data/merchants.csv",
 })
-puts mr = se.merchants
-puts merchant = mr.find_by_name("CJsDecor")
+puts mr = se.

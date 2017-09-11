@@ -1,3 +1,5 @@
+require "pry"
+
 class FindByName
 
   attr_reader :names
@@ -6,7 +8,7 @@ class FindByName
   end
 
   def find_by_name(hash)
-    @names 
+    @names
   end
 
 end
