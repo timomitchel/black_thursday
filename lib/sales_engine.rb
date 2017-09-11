@@ -1,5 +1,6 @@
-require './lib/merchants'
-require 'csv'
+require './lib/merchant'
+require "./lib/merchant_repository"
+require "./lib/csv_reader"
 require "pry"
 class SalesEngine
 
@@ -13,7 +14,7 @@ class SalesEngine
   end
 
   def merchants
-    hash[:merchants]
+    MerchantRepository.new(CsvReader.csv_load(hash[:merchants]))
   end
 
 end
@@ -21,4 +22,5 @@ se = SalesEngine.from_csv({
   :items     => "./data/items.csv",
   :merchants => "./data/merchants.csv",
 })
-puts mr = se.
+mr = se.merchants
+puts mr.find_by_name('Candisart')

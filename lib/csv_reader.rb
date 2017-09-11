@@ -1,12 +1,13 @@
 require 'csv'
 require 'pry'
-class Loader
+class CsvReader
 
   def self.csv_load(file)
     contents = CSV.open "#{file}", headers: true, header_converters: :symbol
+  
   end
 
 
 end
 
-Loader.csv_load('./data/merchants.csv')
+CsvReader.csv_load('./data/merchants.csv')
