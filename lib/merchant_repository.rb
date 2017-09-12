@@ -8,12 +8,28 @@ class MerchantRepository
   end
 
   def find_by_name(merchant)
-    c = data.find do |m|
-      m.name == merchant
+    current_merchant = data.find do |object|
+      object.name.downcase == merchant.downcase
     end
-    c
+    current_merchant
   end
 
+  def all
+    @data
+  end
 
+  def find_by_id(merchant)
+    current_merchant = data.find do |object|
+      object.id.downcase == merchant.downcase
+    end
+    current_merchant
+  end
+
+  def find_all_by_name(merchant)
+    current_merchant = data.select do |object|
+      object.name.downcase.include?(merchant.downcase)
+    end
+    current_merchant
+  end
 
 end
