@@ -15,17 +15,18 @@ class SalesEngine
   end
 
   def merchants
-    MerchantRepository.new(CsvReader.csv_load(hash[:merchants]))
+    MerchantRepository.new(CsvReader.csv_load(hash[:merchants]), self)
+  end
+
+  def find_items_by_merchant(merchant_id)
+    items.find_all_by_merchant_id(merchant_id)
   end
 
   def items
-    ItemRepository.new(CsvReader.csv_load(hash[:items]))
+    ItemRepository.new(CsvReader.csv_load(hash[:items]), self)
+  end
+
+  def find_by_id(merchant)
+    merchants.find_by_id(merchant)
   end
 end
-se = SalesEngine.from_csv({
-  :items     => "./data/items.csv",
-  :merchants => "./data/merchants.csv",
-})
-merchant = se.merchants.find_by_id(12334112)
-binding.pry
-p merchant.items

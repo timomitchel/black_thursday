@@ -2,9 +2,14 @@ require "./lib/item"
 require "pry"
 class ItemRepository
 
-  attr_reader :data
-  def initialize(data)
-    @data = data.map {|line| Item.new(line)}
+  attr_reader :data, :parent
+  def initialize(data, parent)
+    @data = data.map {|line| Item.new(line, self)}
+    @parent = parent
+  end
+
+  def find_by_id(merchant_id)
+    parent.find_by_id(merchant_id)
   end
 
   def find_by_name(item)
@@ -47,10 +52,9 @@ class ItemRepository
   end
 
   def find_all_by_merchant_id(item)
-    current_item = data.select do |object|
-      object.merchant_id.to_i == item
+    data.select do |object|
+      object.merchant_id.to_i == item.to_i
     end
-    current_item
   end
 
 end
