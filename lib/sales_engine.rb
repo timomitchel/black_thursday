@@ -26,5 +26,5 @@ se = SalesEngine.from_csv({
   :items     => "./data/items.csv",
   :merchants => "./data/merchants.csv",
 })
-mr = se.merchants
-p mr.find_all_by_name("style")
+mr = se.items
+p mr.find_all_by_merchant_id(12336477)

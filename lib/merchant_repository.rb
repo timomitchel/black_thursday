@@ -20,7 +20,7 @@ class MerchantRepository
 
   def find_by_id(merchant)
     current_merchant = data.find do |object|
-      object.id.downcase == merchant.downcase
+      object.id.to_i == merchant
     end
     current_merchant
   end
