@@ -4,10 +4,8 @@ class CsvReader
 
   def self.csv_load(file)
     contents = CSV.open "#{file}", headers: true, header_converters: :symbol
-  
+
   end
 
 
 end
-
-CsvReader.csv_load('./data/merchants.csv')
