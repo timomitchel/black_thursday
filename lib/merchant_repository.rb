@@ -3,8 +3,13 @@ require "pry"
 
 class MerchantRepository
   attr_reader :data
-  def initialize(data)
-    @data = data.map {|line| Merchant.new(line)}
+  def initialize(data, parent)
+    @data = data.map {|line| Merchant.new(line, self)}
+    @parent = parent
+  end
+
+  def find_items_by_merchant(id)
+    parent.find_items_by_merchant(id)
   end
 
   def find_by_name(merchant)
@@ -19,10 +24,9 @@ class MerchantRepository
   end
 
   def find_by_id(merchant)
-    current_merchant = data.find do |object|
-      object.id.to_i == merchant
+    data.find do |object|
+      object.id.to_i == merchant.to_i
     end
-    current_merchant
   end
 
   def find_all_by_name(merchant)
