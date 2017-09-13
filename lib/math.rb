@@ -1,12 +1,10 @@
 require 'pry'
 module Math
   def all_merchants
-    # binding.pry
     engine.merchants.all.count
   end
 
   def all_items
-    # binding.pry
     engine.items.all.count
   end
 
