@@ -2,8 +2,6 @@ require './lib/merchant'
 require "./lib/merchant_repository"
 require "./lib/csv_reader"
 require "./lib/item_repository"
-require "./lib/invoice_repository"
-
 class SalesEngine
 
   attr_reader :hash
@@ -35,5 +33,3 @@ class SalesEngine
     InvoiceRepository.new(CsvReader.csv_load(hash[:invoices]), self)
   end
 end
-se = SalesEngine.from_csv({:invoices => "./data/invoices.csv"})
-puts  se.invoices.find_all_by_status("pending")

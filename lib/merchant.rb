@@ -1,3 +1,4 @@
+require 'time'
 class Merchant
 
   attr_reader :name, :id, :created_at, :updated_at, :parent
@@ -5,8 +6,8 @@ class Merchant
   def initialize(data, parent)
      @name = data[:name]
      @id = data[:id]
-     @created_at = data[:created_at]
-     @updated_at = data[:updated_at]
+     @created_at = Time.parse(data[:created_at])
+     @updated_at = Time.parse(data[:updated_at])
      @parent = parent
   end
 
