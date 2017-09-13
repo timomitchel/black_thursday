@@ -1,4 +1,5 @@
 require "./lib/item"
+require 'csv'
 require "pry"
 class ItemRepository
 

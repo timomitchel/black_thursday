@@ -25,7 +25,7 @@ class SalesAnalyst
    end
 
    def merchants_with_high_item_count
-     total = (average_items_per_merchant + average_items_per_merchant_standard_deviation).ceil
+     total = one_standard_deviation
      high_sellers = engine.merchants.all.select do |merchant|
        merchant.items.length >= total
      end
@@ -48,15 +48,15 @@ class SalesAnalyst
    end
 
    def golden_items
-     total = (average_items_per_merchant + (average_items_per_merchant_standard_deviation * 2)).ceil
+    mean = engine.items.all.map do |items|
+      (items.unit_price - average_average_price_per_merchant)**2
+    end
+    stnd_dev = Math.sqrt(mean.reduce(:+)/(engine.items.all.count - 1)).round(2)
+    total = average_average_price_per_merchant + (stnd_dev * 2).round(2)
+    golden_items = engine.items.all.select do |item|
+      item.unit_price <= total
+    end
+    golden_items.count
    end
 
 end
-
-se = SalesEngine.from_csv({
-  :items     => "./data/items.csv",
-  :merchants => "./data/merchants.csv",
-})
-
-sa = SalesAnalyst.new(se)
-puts sa.average_average_price_per_merchant

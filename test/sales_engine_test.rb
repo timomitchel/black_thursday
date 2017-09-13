@@ -1,5 +1,4 @@
 require 'minitest/autorun'
-require "minitest/pride"
 require "./lib/sales_engine"
 
 class SalesEngineTest < Minitest::Test
@@ -20,7 +19,5 @@ class SalesEngineTest < Minitest::Test
 
     assert_equal merchant, mr.find_by_name("CJsDecor")
   end
-
-
 
 end
