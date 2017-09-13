@@ -26,11 +26,9 @@ class ItemRepository
   end
 
   def find_by_id(item)
-    current_item = data.find do |object|
+    data.find do |object|
       object.id.to_i == item.to_i
     end
-    return nil if current_item.nil?
-    current_item
   end
 
   def find_all_with_description(item)
