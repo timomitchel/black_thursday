@@ -1,7 +1,6 @@
 require './lib/merchant'
 require "./lib/merchant_repository"
 require "./lib/csv_reader"
-require "pry"
 require "./lib/item_repository"
 class SalesEngine
 

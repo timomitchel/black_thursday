@@ -1,6 +1,6 @@
 require "./lib/sales_engine"
 require "./lib/math"
-require "pry"
+# require "pry"
 
 class SalesAnalyst
   include Math
@@ -19,9 +19,8 @@ class SalesAnalyst
 
    def average_items_per_merchant_standard_deviation
      mean = engine.merchants.all.map do |merchant|
-
       (merchant.items.length - average_items_per_merchant)**2
-      end
+    end
     Math.sqrt(mean.reduce(:+)/(engine.merchants.all.count - 1)).round(2)
    end
 
@@ -30,19 +29,26 @@ class SalesAnalyst
      high_sellers = engine.merchants.all.select do |merchant|
        merchant.items.length >= total
      end
-     high_sellers
+     high_sellers.count
    end
 
    def average_item_price_for_merchant(merchant_id)
-
+     items = engine.items.find_all_by_merchant_id(merchant_id)
+     average = items.map do |item|
+       item.unit_price.to_f
+     end
+     (average.sum.to_f / items.count).round(2)
    end
 
    def average_average_price_per_merchant
-
+     average = engine.merchants.all.map do |merchant|
+       average_item_price_for_merchant(merchant.id)
+     end
+     (average.sum.to_f / average.length.to_f).round(2)
    end
 
    def golden_items
-
+     total = (average_items_per_merchant + (average_items_per_merchant_standard_deviation * 2)).ceil
    end
 
 end
@@ -53,4 +59,4 @@ se = SalesEngine.from_csv({
 })
 
 sa = SalesAnalyst.new(se)
-puts sa.merchants_with_high_item_count
+puts sa.average_average_price_per_merchant

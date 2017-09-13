@@ -1,5 +1,5 @@
 require "./lib/merchant"
-require "pry"
+# require_relative "pry"
 
 class MerchantRepository
   attr_reader :data, :parent
