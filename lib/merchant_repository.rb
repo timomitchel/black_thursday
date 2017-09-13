@@ -16,6 +16,7 @@ class MerchantRepository
     current_merchant = data.find do |object|
       object.name.downcase == merchant.downcase
     end
+    return nil if current_merchant.nil?
     current_merchant
   end
 
@@ -24,15 +25,18 @@ class MerchantRepository
   end
 
   def find_by_id(merchant)
-    data.find do |object|
+    current_merchant = data.find do |object|
       object.id.to_i == merchant.to_i
     end
+    return nil if current_merchant.nil?
+    current_merchant
   end
 
   def find_all_by_name(merchant)
     current_merchant = data.select do |object|
       object.name.downcase.include?(merchant.downcase)
     end
+    return [] if current_merchant.nil?
     current_merchant
   end
 

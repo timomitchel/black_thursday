@@ -8,14 +8,15 @@ class ItemRepository
     @parent = parent
   end
 
-  def find_by_id(merchant_id)
-    parent.find_by_id(merchant_id)
+  def find_by_merchant_id(merchant_id)
+    parent.find_by_merchant_id(merchant_id)
   end
 
   def find_by_name(item)
     current_item = data.find do |object|
       object.name.downcase == item.downcase
     end
+    return nil if current_item.nil?
     current_item
   end
 
@@ -25,8 +26,9 @@ class ItemRepository
 
   def find_by_id(item)
     current_item = data.find do |object|
-      object.id.to_i == item
+      object.id.to_i == item.to_i
     end
+    return nil if current_item.nil?
     current_item
   end
 
@@ -34,6 +36,7 @@ class ItemRepository
     current_item = data.select do |object|
       object.description.downcase.include?(item.downcase)
     end
+    return [] if current_item.nil?
     current_item
   end
 
@@ -41,6 +44,7 @@ class ItemRepository
     current_item = data.select do |object|
       object.unit_price.to_f == (item.to_f)
     end
+    return [] if current_item.nil?
     current_item
   end
 
@@ -48,13 +52,16 @@ class ItemRepository
     current_item = data.select do |object|
       item.cover?(object.unit_price.to_f)
     end
+    return [] if current_item.nil?
     current_item
   end
 
   def find_all_by_merchant_id(item)
-    data.select do |object|
+    all_items = data.select do |object|
       object.merchant_id.to_i == item.to_i
     end
+    return [] if all_items.nil?
+    all_items
   end
 
 end

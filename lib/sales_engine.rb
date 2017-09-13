@@ -15,7 +15,7 @@ class SalesEngine
   end
 
   def merchants
-    MerchantRepository.new(CsvReader.csv_load(hash[:merchants]), self)
+    @merchant = MerchantRepository.new(CsvReader.csv_load(hash[:merchants]), self)
   end
 
   def find_items_by_merchant(merchant_id)
@@ -23,10 +23,10 @@ class SalesEngine
   end
 
   def items
-    ItemRepository.new(CsvReader.csv_load(hash[:items]), self)
+    @item = ItemRepository.new(CsvReader.csv_load(hash[:items]), self)
   end
 
-  def find_by_id(merchant)
+  def find_by_merchant_id(merchant)
     merchants.find_by_id(merchant)
   end
 end

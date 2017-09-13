@@ -20,8 +20,8 @@ class Item
     @parent = parent
   end
 
-  def merchants
-    parent.find_by_id(merchant_id)
+  def merchant
+    parent.find_by_merchant_id(merchant_id)
   end
 
 end
