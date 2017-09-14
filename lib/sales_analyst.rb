@@ -18,13 +18,10 @@ class SalesAnalyst
    end
 
    def average_items_per_merchant_standard_deviation
-     count = 0
-     mean = 0
-     engine.merchants.all.each do |merchant|
-       count += 1
-       mean += (merchant.items.length - average_items_per_merchant)**2
+     mean = engine.merchants.all.map do |merchant|
+       (merchant.items.length - average_items_per_merchant)**2
      end
-     Math.sqrt(mean.to_f / (count - 1)).round(2)
+     Math.sqrt(mean.sum / (engine.merchants.all.count - 1)).round(2)
    end
 
    def merchants_with_high_item_count
@@ -52,14 +49,10 @@ class SalesAnalyst
    def golden_items
      average = average_average_price_per_merchant
      items = engine.items.all
-     mean = items.map do |item|
-       (item.unit_price - average)**2
-     end
+     mean = items.map {|item|(item.unit_price - average)**2}
      stnd_dev = Math.sqrt(mean.reduce(:+)/(items.count - 1)).round(2)
      total = average + (stnd_dev * 2).round(2)
-     golden_items = items.select do |item|
-       item.unit_price >= total
-     end
+     golden_items = items.select {|item| item.unit_price >= total}
      golden_items.count
    end
 

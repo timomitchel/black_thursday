@@ -1,11 +1,16 @@
 require './lib/invoice'
+require 'csv'
 require 'pry'
 class InvoiceRepository
 attr_reader :data, :parent
-  def initialize(data, parent)
-    @data = data.map{|line| Invoice.new(line, self)}
+  def initialize(data, parent=nil)
+    @data = csv_load(data).map {|row| Invoice.new(row, self)}
     @parent = parent
   end
+
+  def csv_load(file_path)
+   CSV.open file_path, headers: true, header_converters: :symbol
+ end
 
   def all
     @data

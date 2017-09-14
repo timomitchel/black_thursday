@@ -14,5 +14,9 @@ module Math
     (average_per_item + stnd_dev).ceil
   end
 
+  def average_invoices_per_merchant
+    
+  end
+
 
 end

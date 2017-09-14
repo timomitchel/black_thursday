@@ -3,21 +3,25 @@ require 'csv'
 
 class MerchantRepository
   attr_reader :data, :parent
-  def initialize(data, parent)
-    @data = data.map {|line| Merchant.new(line, self)}
+  def initialize(data, parent=nil)
+    @data = csv_load(data).map {|row| Merchant.new(row, self)}
     @parent = parent
   end
+
+  def csv_load(file_path)
+   CSV.open file_path, headers: true, header_converters: :symbol
+ end
 
   def find_items_by_merchant(id)
     parent.find_items_by_merchant(id)
   end
 
+  def find_invoices_by_merchant(id)
+    parent.find_invoices_by_merchant(id)
+  end
+
   def find_by_name(merchant)
-    current_merchant = data.find do |object|
-      object.name.downcase == merchant.downcase
-    end
-    return nil if current_merchant.nil?
-    current_merchant
+    data.find {|object| object.name == merchant.downcase}
   end
 
   def all
@@ -25,19 +29,11 @@ class MerchantRepository
   end
 
   def find_by_id(merchant)
-    current_merchant = data.find do |object|
-      object.id.to_i == merchant.to_i
-    end
-    return nil if current_merchant.nil?
-    current_merchant
+    data.find {|object| object.id == merchant}
   end
 
   def find_all_by_name(merchant)
-    current_merchant = data.select do |object|
-      object.name.downcase.include?(merchant.downcase)
-    end
-    return [] if current_merchant.nil?
-    current_merchant
+    data.select {|object| object.name.include?(merchant.downcase)}
   end
 
 end
