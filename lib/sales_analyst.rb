@@ -1,5 +1,5 @@
-require "./lib/sales_engine"
-require "./lib/math"
+require_relative "sales_engine"
+require_relative "math"
 # require "pry"
 
 class SalesAnalyst
@@ -59,12 +59,20 @@ class SalesAnalyst
    def average_invoices_per_merchant
      (engine.invoices.all.count.to_f / engine.merchants.all.count.to_f).round(2)
    end
-end
 
-se = SalesEngine.from_csv({
-  :items => "./data/items.csv",
-  :merchants => "./data/merchants.csv",
-  :invoices => "./data/invoices.csv"
-})
-sa = SalesAnalyst.new(se)
-puts sa.average_invoices_per_merchant
+   def average_invoices_per_merchant_standard_deviation
+     mean = engine.merchants.all.map do |merchant|
+       (merchant.invoices.length - average_invoices_per_merchant)**2
+     end
+     Math.sqrt(mean.sum / (engine.merchants.all.count - 1)).round(2)
+   end
+
+   def top_merchants_by_invoice_count
+     average = average_invoices_per_merchant
+    total = average + (average_invoices_per_merchant_standard_deviation * 2).round(2)
+    high_sellers = engine.merchants.all.select do |merchant|
+      merchant.invoices.length >= total
+    end
+    high_sellers.count
+   end
+end

@@ -1,12 +1,14 @@
-require './lib/merchant'
-require "./lib/merchant_repository"
-require "./lib/item_repository"
-require "./lib/invoice_repository"
+require_relative 'merchant'
+require_relative "merchant_repository"
+require_relative "item_repository"
+require_relative "invoice_repository"
+
 class SalesEngine
 
   attr_reader :items,
               :merchants,
               :invoices
+
   def initialize(hash)
     @items = ItemRepository.new(hash[:items], self)
     @merchants = MerchantRepository.new(hash[:merchants],self)

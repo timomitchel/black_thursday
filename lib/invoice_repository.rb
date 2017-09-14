@@ -1,6 +1,5 @@
-require './lib/invoice'
+require_relative 'invoice'
 require 'csv'
-require 'pry'
 class InvoiceRepository
 attr_reader :data, :parent
   def initialize(data, parent)
@@ -42,6 +41,10 @@ attr_reader :data, :parent
     data.select do |invoice|
       invoice.status == stats
     end
+  end
+
+  def inspect
+     "#{self.class}"
   end
 
 end

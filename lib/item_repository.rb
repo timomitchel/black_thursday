@@ -1,6 +1,5 @@
-require "./lib/item"
+require_relative "item"
 require 'csv'
-require "pry"
 class ItemRepository
 
   attr_reader :data, :parent

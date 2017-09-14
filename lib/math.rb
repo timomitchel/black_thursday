@@ -13,10 +13,4 @@ module Math
     stnd_dev = average_items_per_merchant_standard_deviation
     (average_per_item + stnd_dev).ceil
   end
-
-  def average_invoices_per_merchant
-    
-  end
-
-
 end

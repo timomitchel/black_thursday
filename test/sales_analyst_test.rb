@@ -1,5 +1,5 @@
-require './lib/sales_analyst'
-require './lib/sales_engine'
+require_relative '../lib/sales_analyst'
+require_relative '../lib/sales_engine'
 require 'minitest/autorun'
 
 class SalesAnalystTest < Minitest::Test
@@ -15,6 +15,7 @@ class SalesAnalystTest < Minitest::Test
                               :merchants => "./data/merchants.csv",
                               :invoices => "./data/invoices.csv"})
     sa = SalesAnalyst.new(se)
+
     assert_instance_of SalesAnalyst, sa
   end
 
@@ -58,5 +59,23 @@ class SalesAnalystTest < Minitest::Test
     expected = 5
 
     assert_equal expected, @sa.golden_items
+  end
+
+  def test_average_invoices_per_merchant
+    expected = 10.49
+
+    assert_equal expected, @sa.average_invoices_per_merchant
+  end
+
+  def test_if_average_invoices_per_merchant_standard_deviation
+    expected = 3.29
+
+    assert_equal expected, @sa.average_invoices_per_merchant_standard_deviation
+  end
+
+  def test_top_merchants_by_invoice_count
+    expected = 12
+
+    assert_equal expected, @sa.top_merchants_by_invoice_count
   end
 end
