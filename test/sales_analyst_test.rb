@@ -37,7 +37,7 @@ class SalesAnalystTest < Minitest::Test
     # skip
     expected = 52
 
-    assert_equal expected, @sa.merchants_with_high_item_count
+    assert_equal expected, @sa.merchants_with_high_item_count.length
   end
 
   def test_if_average_item_price_for_merchant
@@ -58,7 +58,7 @@ class SalesAnalystTest < Minitest::Test
     # skip
     expected = 5
 
-    assert_equal expected, @sa.golden_items
+    assert_equal expected, @sa.golden_items.length
   end
 
   def test_average_invoices_per_merchant
@@ -76,20 +76,20 @@ class SalesAnalystTest < Minitest::Test
   def test_top_merchants_by_invoice_count
     expected = 12
 
-    assert_equal expected, @sa.top_merchants_by_invoice_count
+    assert_equal expected, @sa.top_merchants_by_invoice_count.length
   end
 
   def test_bottom_merchant_by_invoice_count
     expected = 4
 
-    assert_equal expected, @sa.bottom_merchants_by_invoice_count
+    assert_equal expected, @sa.bottom_merchants_by_invoice_count.length
   end
 
   def test_top_days_by_invoice_count
     expected = 1
 
     assert_equal expected, @sa.top_days_by_invoice_count.length
-    assert_equal "Wednesday", @sa.top_days_by_invoice_count.first[0]
+    assert_equal "Wednesday", @sa.top_days_by_invoice_count[0]
   end
 
   def test_invoice_status_returns_percentage

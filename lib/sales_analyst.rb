@@ -29,13 +29,13 @@ class SalesAnalyst
      high_sellers = engine.merchants.all.select do |merchant|
        merchant.items.length >= total
      end
-     high_sellers.count
+     high_sellers
    end
 
    def average_item_price_for_merchant(merchant_id)
      items = engine.items.find_all_by_merchant_id(merchant_id)
      average = 0.00
-     items.each {|item| average += item.unit_price.to_f}
+     items.each {|item| average += item.unit_price}
      (average / items.count).round(2)
    end
 
@@ -43,7 +43,7 @@ class SalesAnalyst
      average = engine.merchants.all.map do |merchant|
        average_item_price_for_merchant(merchant.id)
      end
-     (average.sum.to_f / average.length.to_f).round(2)
+     (average.sum / average.length).round(2)
    end
 
    def golden_items
@@ -53,7 +53,7 @@ class SalesAnalyst
      stnd_dev = Math.sqrt(mean.reduce(:+)/(items.count - 1)).round(2)
      total = average + (stnd_dev * 2).round(2)
      golden_items = items.select {|item| item.unit_price >= total}
-     golden_items.count
+     golden_items
    end
 
    def average_invoices_per_merchant
@@ -74,7 +74,7 @@ class SalesAnalyst
     high_sellers = engine.merchants.all.select do |merchant|
       merchant.invoices.length >= total
     end
-    high_sellers.count
+    high_sellers
    end
 
    def bottom_merchants_by_invoice_count
@@ -84,7 +84,7 @@ class SalesAnalyst
     bottom_sellers = engine.merchants.all.select do |merchant|
       merchant.invoices.length <= total
     end
-    bottom_sellers.count
+    bottom_sellers
    end
 
    def top_days_by_invoice_count
@@ -96,12 +96,13 @@ class SalesAnalyst
      mean = amount.map {|num| (num - average)**2}
      stnd_dev = Math.sqrt(mean.sum.to_f / amount.length).ceil
      total = average + stnd_dev
-     amount_of_days.select {|day| day[1] > total}
+     day = amount_of_days.select {|day| day[1] > total}
+     [] << day[0][0]
    end
 
    def invoice_status(input)
      all = engine.invoices.all.select do |invoice|
-       invoice.status == input.to_s
+       invoice.status == input
      end
      ((all.count.to_f / engine.invoices.all.count) * 100).round(2)
    end

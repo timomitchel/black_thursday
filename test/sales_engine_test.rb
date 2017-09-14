@@ -14,7 +14,7 @@ class SalesEngineTest < Minitest::Test
     @so = SalesEngine.from_csv({
       :items     => "./test/fixtures/truncated_items.csv",
       :merchants => "./test/fixtures/truncated_merchants.csv",
-      :invoices => "./test/fixtures/truncated_invoices.csv"
+      :invoices => "./test/fixtures/truncated_invoices.csv",
       :invoice_items => "./test/fixtures/truncated_invoice_items.csv"})
   end
 
