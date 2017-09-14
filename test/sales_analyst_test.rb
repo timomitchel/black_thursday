@@ -78,4 +78,26 @@ class SalesAnalystTest < Minitest::Test
 
     assert_equal expected, @sa.top_merchants_by_invoice_count
   end
+
+  def test_bottom_merchant_by_invoice_count
+    expected = 4
+
+    assert_equal expected, @sa.bottom_merchants_by_invoice_count
+  end
+
+  def test_top_days_by_invoice_count
+    expected = 1
+
+    assert_equal expected, @sa.top_days_by_invoice_count.length
+    assert_equal "Wednesday", @sa.top_days_by_invoice_count.first[0]
+  end
+
+  def test_invoice_status_returns_percentage
+    expected = 29.55
+
+    assert_equal expected, @sa.invoice_status(:pending)
+    assert_equal 56.95, @sa.invoice_status(:shipped)
+    assert_equal 13.5, @sa.invoice_status(:returned)
+  end
+
 end

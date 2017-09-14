@@ -1,6 +1,6 @@
 require_relative "sales_engine"
 require_relative "math"
-# require "pry"
+require "pry"
 
 class SalesAnalyst
   include Math
@@ -69,10 +69,41 @@ class SalesAnalyst
 
    def top_merchants_by_invoice_count
      average = average_invoices_per_merchant
-    total = average + (average_invoices_per_merchant_standard_deviation * 2).round(2)
+     stnd_dev = average_invoices_per_merchant_standard_deviation
+    total = (average + (stnd_dev * 2)).round(2)
     high_sellers = engine.merchants.all.select do |merchant|
       merchant.invoices.length >= total
     end
     high_sellers.count
    end
+
+   def bottom_merchants_by_invoice_count
+    average = average_invoices_per_merchant
+    stnd_dev = average_invoices_per_merchant_standard_deviation
+    total = (average - (stnd_dev * 2)).round(2)
+    bottom_sellers = engine.merchants.all.select do |merchant|
+      merchant.invoices.length <= total
+    end
+    bottom_sellers.count
+   end
+
+   def top_days_by_invoice_count
+     days = engine.invoices.all.map{|invoice| invoice.created_at.strftime("%A")}
+     week = days.uniq
+     amount = week.map {|day| days.count(day)}
+     amount_of_days = week.zip(amount)
+     average = amount.sum / 7
+     mean = amount.map {|num| (num - average)**2}
+     stnd_dev = Math.sqrt(mean.sum.to_f / amount.length).ceil
+     total = average + stnd_dev
+     amount_of_days.select {|day| day[1] > total}
+   end
+
+   def invoice_status(input)
+     all = engine.invoices.all.select do |invoice|
+       invoice.status == input.to_s
+     end
+     ((all.count.to_f / engine.invoices.all.count) * 100).round(2)
+   end
+
 end
