@@ -17,7 +17,7 @@ class ItemRepository
   end
 
   def find_by_name(item)
-    data.find {|object| object.name == item.downcase}
+    data.find {|object| object.name.downcase == item.downcase}
   end
 
   def all
@@ -29,7 +29,7 @@ class ItemRepository
   end
 
   def find_all_with_description(item)
-    data.select {|object| object.description.include?(item.downcase)}
+    data.select {|object| object.description.downcase.include?(item.downcase)}
   end
 
   def find_all_by_price(item)

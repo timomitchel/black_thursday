@@ -13,8 +13,8 @@ class Item
 
   def initialize(data, parent)
     @id = data[:id].to_i
-    @name = data[:name].downcase
-    @description = data[:description].downcase
+    @name = data[:name]
+    @description = data[:description]
     @unit_price = BigDecimal.new(data[:unit_price])/100
     @created_at = Time.parse(data[:created_at])
     @updated_at = Time.parse(data[:updated_at])

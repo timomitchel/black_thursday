@@ -1,5 +1,6 @@
 require_relative "merchant"
 require 'csv'
+require 'pry'
 
 class MerchantRepository
   attr_reader :data, :parent
@@ -22,7 +23,7 @@ class MerchantRepository
   end
 
   def find_by_name(merchant)
-    data.find {|object| object.name == merchant.downcase}
+    data.find {|object| object.name.downcase == merchant.downcase}
   end
 
   def all
@@ -34,7 +35,7 @@ class MerchantRepository
   end
 
   def find_all_by_name(merchant)
-    data.select {|object| object.name.include?(merchant.downcase)}
+    data.select {|object| object.name.downcase.include?(merchant.downcase)}
   end
 
   def inspect
