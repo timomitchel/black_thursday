@@ -3,7 +3,7 @@ require 'csv'
 
 class MerchantRepository
   attr_reader :data, :parent
-  def initialize(data, parent=nil)
+  def initialize(data, parent)
     @data = csv_load(data).map {|row| Merchant.new(row, self)}
     @parent = parent
   end

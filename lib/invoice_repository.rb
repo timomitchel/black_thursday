@@ -3,7 +3,7 @@ require 'csv'
 require 'pry'
 class InvoiceRepository
 attr_reader :data, :parent
-  def initialize(data, parent=nil)
+  def initialize(data, parent)
     @data = csv_load(data).map {|row| Invoice.new(row, self)}
     @parent = parent
   end
@@ -14,6 +14,10 @@ attr_reader :data, :parent
 
   def all
     @data
+  end
+
+  def find_merchant_by_invoice(merchant)
+    parent.find_merchant_by_invoice(merchant)
   end
 
   def find_by_id(invoice_id)

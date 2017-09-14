@@ -56,4 +56,15 @@ class SalesAnalyst
      golden_items.count
    end
 
+   def average_invoices_per_merchant
+     (engine.invoices.all.count.to_f / engine.merchants.all.count.to_f).round(2)
+   end
 end
+
+se = SalesEngine.from_csv({
+  :items => "./data/items.csv",
+  :merchants => "./data/merchants.csv",
+  :invoices => "./data/invoices.csv"
+})
+sa = SalesAnalyst.new(se)
+puts sa.average_invoices_per_merchant

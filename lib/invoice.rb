@@ -4,7 +4,8 @@ class Invoice
               :merchant_id,
               :status,
               :created_at,
-              :updated_at
+              :updated_at,
+              :parent
 
   def initialize(data, parent)
     @id = data[:id].to_i
@@ -13,5 +14,10 @@ class Invoice
     @status = data[:status]
     @created_at = data[:created_at]
     @updated_at = data[:updated_at]
+    @parent = parent
+  end
+
+  def merchant
+    parent.find_merchant_by_invoice(merchant_id)
   end
 end
