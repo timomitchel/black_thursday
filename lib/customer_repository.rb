@@ -9,6 +9,10 @@ class CustomerRepository
     @parent = parent
   end
 
+  def find_merchant_by_customer_id(id)
+    parent.find_merchant_by_customer_id(id)
+  end
+
   def csv_load(file_path)
    CSV.open file_path, headers: true, header_converters: :symbol
   end
