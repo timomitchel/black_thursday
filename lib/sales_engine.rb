@@ -54,4 +54,8 @@ class SalesEngine
     transactions.find_all_by_invoice_id(id)
   end
 
+  def find_customer_by_invoice_id(id)
+    customer.find_by_id(id)
+  end
+
 end
