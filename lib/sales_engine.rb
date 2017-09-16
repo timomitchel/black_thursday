@@ -50,4 +50,8 @@ class SalesEngine
     end
   end
 
+  def find_transaction_by_invoice_id(id)
+    transactions.find_all_by_invoice_id(id)
+  end
+
 end
