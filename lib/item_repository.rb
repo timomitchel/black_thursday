@@ -1,6 +1,5 @@
-require "./lib/item"
+require_relative "item"
 require 'csv'
-require "pry"
 class ItemRepository
 
   attr_reader :data, :parent
@@ -11,14 +10,14 @@ class ItemRepository
 
   def csv_load(file_path)
    CSV.open file_path, headers: true, header_converters: :symbol
- end
+  end
 
   def find_by_merchant_id(merchant_id)
     parent.find_by_merchant_id(merchant_id)
   end
 
   def find_by_name(item)
-    data.find {|object| object.name == item.downcase}
+    data.find {|object| object.name.downcase == item.downcase}
   end
 
   def all
@@ -30,7 +29,7 @@ class ItemRepository
   end
 
   def find_all_with_description(item)
-    data.select {|object| object.description.include?(item.downcase)}
+    data.select {|object| object.description.downcase.include?(item.downcase)}
   end
 
   def find_all_by_price(item)

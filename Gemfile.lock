@@ -8,8 +8,6 @@ GEM
       thread_safe (~> 0.3, >= 0.3.1)
     cane (3.0.0)
       parallel
-    chronic_duration (0.10.6)
-      numerizer (~> 0.1.1)
     codeclimate-engine-rb (0.4.0)
       virtus (~> 1.0)
     coercible (1.0.0)
@@ -19,7 +17,6 @@ GEM
     equalizer (0.0.11)
     ice_nine (0.11.2)
     minitest (5.10.3)
-    numerizer (0.1.1)
     parallel (1.12.0)
     parser (2.4.0.0)
       ast (~> 2.2)
@@ -30,8 +27,6 @@ GEM
       codeclimate-engine-rb (~> 0.4.0)
       parser (>= 2.4.0.0, < 2.5)
       rainbow (~> 2.0)
-    spec (5.3.4)
-      chronic_duration (~> 0.10.2)
     thread_safe (0.3.6)
     virtus (1.0.5)
       axiom-types (~> 0.1)
@@ -47,7 +42,6 @@ DEPENDENCIES
   minitest
   rake
   reek
-  spec
 
 BUNDLED WITH
    1.14.6
