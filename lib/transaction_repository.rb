@@ -9,6 +9,10 @@ class TransactionRepository
     @parent = parent
   end
 
+  def find_invoice_by_transaction_id(id)
+    parent.find_invoice_by_transaction_id(id)
+  end
+
   def csv_load(file_path)
    CSV.open file_path, headers: true, header_converters: :symbol
   end
