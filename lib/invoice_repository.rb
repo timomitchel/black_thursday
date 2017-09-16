@@ -19,6 +19,10 @@ attr_reader :data, :parent
     parent.find_transaction_by_invoice_id(id)
   end
 
+  def find_customer_by_invoice_id(id)
+    parent.find_customer_by_invoice_id(id)
+  end
+
   def find_item_by_invoice_id(id)
     parent.find_item_by_invoice_id(id)
   end
