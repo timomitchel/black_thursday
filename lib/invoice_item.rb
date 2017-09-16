@@ -24,7 +24,6 @@ class InvoiceItem
   end
 
   def unit_price_to_dollars
-    binding.pry
     unit_price.to_f.round(2)
   end
 
