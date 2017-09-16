@@ -18,4 +18,8 @@ class Merchant
   def invoices
     parent.find_invoices_by_merchant(id)
   end
+
+  def customers
+    parent.find_customer_by_merchant_id(id)
+  end
 end
