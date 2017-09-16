@@ -67,4 +67,11 @@ class SalesAnalyst
      ((all.count.to_f / engine.invoices.all.count) * 100).round(2)
    end
 
+   def total_revenue_by_date(date)
+     all = engine.invoices.all.select do |invoice|
+       invoice.created_at == date
+     end
+    all.reduce(0) {|sum, invoice| sum += invoice.total}
+   end
+
 end
