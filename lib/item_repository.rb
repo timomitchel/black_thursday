@@ -10,7 +10,7 @@ class ItemRepository
 
   def csv_load(file_path)
    CSV.open file_path, headers: true, header_converters: :symbol
- end
+  end
 
   def find_by_merchant_id(merchant_id)
     parent.find_by_merchant_id(merchant_id)

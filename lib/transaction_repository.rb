@@ -1,11 +1,11 @@
-require_relative 'invoice_item'
+require_relative 'transaction'
 require 'csv'
 
-class InvoiceItemRepository
+class TransactionRepository
   attr_reader :data, :parent
 
   def initialize(data, parent)
-    @data = csv_load(data).map{|line| InvoiceItem.new(line, self)}
+    @data = csv_load(data).map {|row| Transaction.new(row, self)}
     @parent = parent
   end
 
@@ -21,16 +21,19 @@ class InvoiceItemRepository
     data.find {|object| object.id == item_id}
   end
 
-  def find_all_by_item_id(id)
-    data.select {|object| object.item_id == id}
-  end
-
   def find_all_by_invoice_id(id)
     data.select {|object| object.invoice_id == id}
+  end
+
+  def find_all_by_credit_card_number(number)
+    data.select {|object| object.credit_card_number == number}
+  end
+
+  def find_all_by_result(status)
+    data.select {|object| object.result == status}
   end
 
   def inspect
     "#{self.class}"
   end
-
 end

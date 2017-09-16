@@ -14,7 +14,7 @@ class SalesAnalyst
    def average_items_per_merchant
      items = all_items
      merchants = all_merchants
-    (items.to_f / merchants.to_f).round(2)
+     (items.to_f / merchants.to_f).round(2)
    end
 
    def average_items_per_merchant_standard_deviation
