@@ -15,32 +15,28 @@ attr_reader :data, :parent
     @data
   end
 
+  def find_item_by_invoice_id(id)
+    parent.find_item_by_invoice_id(id)
+  end
+
   def find_merchant_by_invoice(merchant)
     parent.find_merchant_by_invoice(merchant)
   end
 
   def find_by_id(invoice_id)
-    data.find do |invoice|
-      invoice.id.to_i == invoice_id
-    end
+    data.find {|invoice|invoice.id.to_i == invoice_id}
   end
 
   def find_all_by_customer_id(customer)
-    data.select do |invoice|
-      invoice.customer_id.to_i == customer
-    end
+    data.select {|invoice| invoice.customer_id.to_i == customer}
   end
 
   def find_all_by_merchant_id(merchant)
-    data.select do |invoice|
-      invoice.merchant_id.to_i == merchant
-    end
+    data.select {|invoice| invoice.merchant_id.to_i == merchant}
   end
 
   def find_all_by_status(stats)
-    data.select do |invoice|
-      invoice.status == stats
-    end
+    data.select {|invoice| invoice.status == stats}
   end
 
   def inspect
