@@ -37,9 +37,14 @@ class Invoice
   end
 
   def is_paid_in_full?
-    parent.find_transaction_by_invoice_id(id).all? do |transaction|
-       transaction.result == "success" && transaction.result != []
+    !transactions.empty? && transactions.any? do |transaction|
+      transaction.result == "success"
     end
+  end
+
+  def total
+
+
   end
 
 end
