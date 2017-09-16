@@ -1,4 +1,5 @@
 require 'time'
+require "pry"
 
 class Invoice
   attr_reader :id,
@@ -36,7 +37,9 @@ class Invoice
   end
 
   def is_paid_in_full?
-    parent.find_transaction_by_invoice_id(id)
+    parent.find_transaction_by_invoice_id(id).all? do |transaction|
+       transaction.result == "success" && transaction.result != []
+    end
   end
 
 end
