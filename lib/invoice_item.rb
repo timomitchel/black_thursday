@@ -27,4 +27,8 @@ class InvoiceItem
     unit_price.to_f.round(2)
   end
 
+  def price
+    quantity * unit_price
+  end
+
 end
