@@ -34,4 +34,9 @@ class Invoice
   def customer
     parent.find_customer_by_invoice_id(customer_id)
   end
+
+  def is_paid_in_full?
+    parent.find_transaction_by_invoice_id(id)
+  end
+
 end
