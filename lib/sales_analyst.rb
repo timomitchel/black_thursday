@@ -96,6 +96,23 @@ class SalesAnalyst
    end
 
    def merchants_with_only_one_item
+     one_item
+   end
+
+   def merchants_with_only_one_item_registered_in_month(month)
+    one_item.select do |merchant|
+       months(merchant.created_at.month) == month
+     end
+   end
+
+   def months(month)
+    all_months =  ["January", "February","March","April",
+      "May","June","July","August",
+      "September","October","November","December"]
+      all_months[month - 1]
+   end
+
+   def one_item
      singles = engine.merchants.all.find_all do |merchant|
        merchant.has_one_item?
      end
