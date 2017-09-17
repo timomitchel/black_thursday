@@ -4,7 +4,7 @@ require 'minitest/autorun'
 
 class SalesAnalystTest < Minitest::Test
   def setup
-    se = SalesEngine.from_csv({
+    @se = SalesEngine.from_csv({
     :items => "./data/items.csv",
     :merchants => "./data/merchants.csv",
     :invoices => "./data/invoices.csv",
@@ -12,16 +12,11 @@ class SalesAnalystTest < Minitest::Test
     :transactions => "./data/transactions.csv",
     :customers => "./data/customers.csv"
   })
-    @sa = SalesAnalyst.new(se)
+    @sa = SalesAnalyst.new(@se)
   end
 
   def test_check_if_instance_of_a_method_exist
-    se = SalesEngine.from_csv({:items     => "./data/items.csv",
-                              :merchants => "./data/merchants.csv",
-                              :invoices => "./data/invoices.csv"})
-    sa = SalesAnalyst.new(se)
-
-    assert_instance_of SalesAnalyst, sa
+      assert_instance_of SalesAnalyst, @sa
   end
 
   def test_if_average_item_per_merchant_return_the_average
@@ -103,6 +98,43 @@ class SalesAnalystTest < Minitest::Test
     assert_equal expected, @sa.invoice_status(:pending)
     assert_equal 56.95, @sa.invoice_status(:shipped)
     assert_equal 13.5, @sa.invoice_status(:returned)
+  end
+
+  def test_total_revenue_by_date
+    date = Time.parse("2009-02-07")
+    expected = 21067.77
+
+    assert_equal expected , @sa.total_revenue_by_date(date)
+  end
+
+  def test_top_revenue_earners
+    assert_equal 10, @sa.top_revenue_earners(10)
+    assert_equal 20, @sa.top_recenue_earners
+    assert_equal Merchant, @sa.top_recenue_earners.first.first.class
+  end
+
+  def test_merchants_with_pending_invoices_return_array
+    assert_equal , @sa.merchants_with_pending_invoices
+  end
+
+  def test_merchants_with_only_one_item
+    assert_equal ,@sa.merchants_with_only_one_item
+  end
+
+  def test_merchants_with_only_one_item_registered_in_month_return_array
+    assert_equal , @sa.merchants_with_only_one_item_registered_in_month("June")
+  end
+
+  def test_revenue_by_merchant_return_the_total_revenue
+    assert_equal , @sa.revenue_by_merchant(merchant_id)
+  end
+
+  def test_most_sold_item_for_merchant_returns_array_or_single_item
+    assert_equal , @sa..most_sold_item_for_merchant(merchant_id)
+  end
+
+  def test_best_item_for_merchant_returns_most_profitable_item
+    assert_equal , @sa.best_item_for_merchant(merchant_id)
   end
 
 end
