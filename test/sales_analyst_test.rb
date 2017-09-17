@@ -105,7 +105,6 @@ class SalesAnalystTest < Minitest::Test
     expected = 21067.77
 
     assert_equal expected , @sa.total_revenue_by_date(date)
-
   end
 
   def test_top_revenue_earners
@@ -116,7 +115,26 @@ class SalesAnalystTest < Minitest::Test
 
   def test_merchants_with_pending_invoices_return_array
     assert_equal , @sa.merchants_with_pending_invoices
+  end
 
+  def test_merchants_with_only_one_item
+    assert_equal ,@sa.merchants_with_only_one_item
+  end
+
+  def test_merchants_with_only_one_item_registered_in_month_return_array
+    assert_equal , @sa.merchants_with_only_one_item_registered_in_month("June")
+  end
+
+  def test_revenue_by_merchant_return_the_total_revenue
+    assert_equal , @sa.revenue_by_merchant(merchant_id)
+  end
+
+  def test_most_sold_item_for_merchant_returns_array_or_single_item
+    assert_equal , @sa..most_sold_item_for_merchant(merchant_id)
+  end
+
+  def test_best_item_for_merchant_returns_most_profitable_item
+    assert_equal , @sa.best_item_for_merchant(merchant_id)
   end
 
 end
