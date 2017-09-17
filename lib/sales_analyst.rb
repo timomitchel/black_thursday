@@ -121,4 +121,24 @@ class SalesAnalyst
    def revenue_by_merchant(merchant_id)
      engine.merchants.find_by_id(merchant_id).revenue
    end
+
+   def most_sold_item_for_merchant(merchant_id)
+     invoices = engine.invoices.find_all_by_merchant_id(merchant_id)
+     all = invoices.select {|invoice| invoice.is_paid_in_full?}
+     total = all.map {|invoice| invoice.invoice_items}
+     turn_to_items(top_items(total))
+   end
+
+   def top_items(total)
+     max = total.flatten.max_by {|invoice_item| invoice_item.quantity}
+     top_items = total.flatten.select do |invoice_item|
+       invoice_item.quantity == max.quantity
+     end
+   end
+
+   def turn_to_items(top_item)
+     top_item.flatten.map do |invoice_item|
+        engine.items.find_by_id(invoice_item.item_id)
+     end
+   end
 end
