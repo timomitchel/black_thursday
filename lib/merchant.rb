@@ -22,4 +22,8 @@ class Merchant
   def customers
     parent.find_customer_by_merchant_id(id)
   end
+
+  def revenue
+    invoices.map { |invoice| invoice.total }.reduce(:+)
+  end
 end
