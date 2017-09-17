@@ -76,20 +76,22 @@ class SalesAnalyst
 
    def top_revenue_earners(x = 20)
     merchants = engine.merchants.all.select do |merchant|
-      merchant.invoices.count > 0
+       merchant.invoices.count > 0
     end
-    top = merchants.map  do |merchant|
-      [merchant, revenues(merchant.id)]
-    end
+    top = merchants.map{|merchant| [merchant, revenues(merchant.id)]}
     top = top.sort_by {|merchant| merchant[1]}.reverse
     all = []
     x.times {|index| all << top[index][0]}
     all
-    # binding.pry
    end
 
    def revenues(id)
      revenue = engine.merchants.find_by_id(id).revenue.to_f.round(2)
    end
+
+  #  def merchants_with_pending_invoices
+  #    engine.merchants.all do |merchant|
+   #
+  #  end
 
 end
