@@ -94,4 +94,10 @@ class SalesAnalyst
        merchant.has_pending_invoices?
      end
    end
+
+   def merchants_with_only_one_item
+     singles = engine.merchants.all.find_all do |merchant|
+       merchant.has_one_item?
+     end
+   end
 end

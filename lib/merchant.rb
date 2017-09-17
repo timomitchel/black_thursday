@@ -32,4 +32,8 @@ class Merchant
       !invoice.is_paid_in_full?
     end
   end
+
+  def has_one_item?
+    items.count == 1
+  end
 end
