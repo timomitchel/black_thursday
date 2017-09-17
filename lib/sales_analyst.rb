@@ -117,4 +117,8 @@ class SalesAnalyst
        merchant.has_one_item?
      end
    end
+
+   def revenue_by_merchant(merchant_id)
+     engine.merchants.find_by_id(merchant_id).revenue
+   end
 end
