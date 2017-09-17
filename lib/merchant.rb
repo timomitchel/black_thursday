@@ -26,4 +26,10 @@ class Merchant
   def revenue
     invoices.map { |invoice| invoice.total }.reduce(:+)
   end
+
+  def has_pending_invoices?
+    invoices.any? do |invoice|
+      !invoice.is_paid_in_full?
+    end
+  end
 end

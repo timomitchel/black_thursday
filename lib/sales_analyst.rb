@@ -89,10 +89,9 @@ class SalesAnalyst
      revenue = engine.merchants.find_by_id(id).revenue.to_f.round(2)
    end
 
-
-  #  def merchants_with_pending_invoices
-  #    engine.merchants.all do |merchant|
-   #
-  #  end
-
+   def merchants_with_pending_invoices
+     total = engine.merchants.all.select do |merchant|
+       merchant.has_pending_invoices?
+     end
+   end
 end
