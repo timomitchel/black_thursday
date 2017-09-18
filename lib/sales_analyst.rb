@@ -68,4 +68,28 @@ class SalesAnalyst
      end
      ((all.count.to_f / engine.invoices.all.count) * 100).round(2)
    end
+
+   def total_revenue_by_date(date)
+     all = engine.invoices.all.select do |invoice|
+       invoice.created_at == date
+     end
+    all.reduce(0) {|sum, invoice| sum += invoice.total}
+   end
+
+   def top_revenue_earners(x = 20)
+    merchants = engine.merchants.all.select do |merchant|
+       merchant.invoices.count > 0
+    end
+    top = merchants.map{|merchant| [merchant, revenues(merchant.id)]}
+    top = top.sort_by {|merchant| merchant[1]}.reverse
+    all = []
+    x.times {|index| all << top[index][0]}
+    all
+   end
+
+   def revenues(id)
+     revenue = engine.merchants.find_by_id(id).revenue.to_f.round(2)
+   end
+
+
 end
