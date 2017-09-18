@@ -30,10 +30,23 @@ class InvoiceRepositoryTest < Minitest::Test
   def test_find_all_by_customer_id_returns_array
     assert_equal Array, repository.find_all_by_customer_id(1).class
     assert_equal Invoice, repository.find_all_by_customer_id(1).first.class
+    assert_equal 1, repository.find_all_by_customer_id(1).first.id
   end
 
-  def test_
+  def test_find_all_by_merchant_id_returns_invoice
+    assert_equal Array, repository.find_all_by_merchant_id(12335938).class
+    assert_equal Invoice, repository.find_all_by_merchant_id(12335938).first.class
+    assert_equal 1, repository.find_all_by_merchant_id(12335938).first.id
+  end
 
+  def test_find_all_by_status_returns_invoice
+    assert_equal Array, repository.find_all_by_status(:pending).class
+    assert_equal Invoice, repository.find_all_by_status(:pending).first.class
+    assert_equal 1, repository.find_all_by_status(:pending).first.id
+  end
+
+  def test_if_inspect_works
+    assert_equal "InvoiceRepository", repository.inspect
   end
 
 end
