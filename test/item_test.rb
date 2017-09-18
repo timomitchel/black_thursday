@@ -27,5 +27,16 @@ attr_reader :item
     assert_equal 123456789, item.id
     assert_nil nil, actual
   end
-  
+
+  def test_if_name_returns_name
+    actual = Item.new({id: "223456789", name: "Christmas Sweets", description: "Ugly sweaters for everyone", unit_price: "12111", merchant_id: "12341234", created_at: "2010-12-10", updated_at: "2011-12-04"}, @repository)
+
+    assert_equal "Christmas Sweaters", item.name
+    assert_nil nil, actual
+  end
+
+  def test_case_name
+
+  end
+
 end
