@@ -2,6 +2,7 @@ require 'minitest/autorun'
 require_relative "../lib/transaction"
 require_relative "../lib/transaction_repository"
 require_relative "../lib/sales_engine"
+require "pry"
 
 class TransactionTest < Minitest::Test
 
@@ -32,9 +33,9 @@ class TransactionTest < Minitest::Test
     assert_equal 4068631943231473, @tran.credit_card_number
   end
 
-  # def test_transaction_returns_correct_cc_expiration_date
-  #   assert_equal 0217, @tran.credit_card_expiration_date
-  # end
+  def test_transaction_returns_correct_cc_expiration_date
+    assert_equal '0217', @tran.credit_card_expiration_date
+  end
 
   def test_tranasction_returns_correct_result
     assert_equal 'success', @tran.result
@@ -52,8 +53,16 @@ class TransactionTest < Minitest::Test
     assert_equal @repo, @tran.parent
   end
 
+<<<<<<< HEAD
   def test_invoice_returns_an_invoice
     assert_equal Invoice, @tran.invoice.first.class
+=======
+  def test_invoice_returns_an_invoice_with_correct_attributes
+    assert_instance_of Invoice, @tran.invoice
+    assert_equal 2179, @tran.invoice.id
+    assert_equal 12334633, @tran.invoice.merchant_id
+    assert_equal :returned, @tran.invoice.status
+>>>>>>> 82f78e42d77689c7739ff3d2d077ac78b1b75f7f
   end
 
 end
