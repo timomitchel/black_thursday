@@ -22,16 +22,17 @@ class MerchantRepositoryTest < Minitest::Test
     assert_instance_of MerchantRepository, repository
   end
 
-  # def test_if_find_by_name_works
-  #   expected = repository.find_by_name("Intricate Sunset")
-  #
-  #   assert_equal expected, repository.find_by_name("Intricate Sunset")
-  # end
-  #
-  # def test_find_by_id_works
-  #   assert_equal Item, repository.find_by_id(123456789).class
-  #   assert_equal "Christmas Sweaters", repository.find_by_id(123456789).name
-  # end
+  def test_if_find_by_name_works
+    assert_equal Merchant, repository.find_by_name("Shopin1901").class
+    assert_equal 12334105, repository.find_by_name("Shopin1901").id
+    assert_nil nil, repository.find_by_name("12")
+  end
+
+  def test_find_by_id_works
+    assert_equal Merchant, repository.find_by_id(12334105).class
+    assert_equal "Shopin1901", repository.find_by_id(12334105).name
+    assert_nil nil, repository.find_by_id(12)
+  end
   #
   # def test_all_if_returns_all_instances
   #   assert_equal 12, repository.all.count
