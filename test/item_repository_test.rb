@@ -74,4 +74,8 @@ class ItemRepositoryTest < Minitest::Test
 
     assert_equal Merchant, rep.find_by_merchant_id(12334105).class
   end
+
+  def test_inspect_method_works
+    assert_equal "ItemRepository", repository.inspect
+  end
 end

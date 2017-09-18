@@ -60,4 +60,7 @@ class MerchantRepositoryTest < Minitest::Test
     assert_equal 1, repository.find_invoices_by_merchant(12334112).count
   end
 
+  def test_inspect_method_works
+    assert_equal "MerchantRepository", repository.inspect
+  end
 end
