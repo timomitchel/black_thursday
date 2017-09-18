@@ -90,9 +90,4 @@ class SalesAnalyst
    end
 
 
-  #  def merchants_with_pending_invoices
-  #    engine.merchants.all do |merchant|
-   #
-  #  end
-
 end
