@@ -35,7 +35,15 @@ attr_reader :item
     assert_nil nil, actual
   end
 
-  def test_case_name
+  def test_if_description_returns_string
+    actual = Item.new({id: "223456789", name: "Christmas Sweets", description: "Ugly sweets for everyone", unit_price: "12111", merchant_id: "12341234", created_at: "2010-12-10", updated_at: "2011-12-04"}, @repository)
+
+    assert_equal "Ugly sweaters for everyone", item.description
+    assert_nil nil, actual
+  end
+
+  def test_unit_price
+    assert_equal BigDecimal, item.unit_price.class
 
   end
 
