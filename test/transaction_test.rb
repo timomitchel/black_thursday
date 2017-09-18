@@ -52,8 +52,8 @@ class TransactionTest < Minitest::Test
     assert_equal @repo, @tran.parent
   end
 
-  # def test_invoice_returns_an_invoice
-  #   assert_equal Invoice, @tran.invoice.first.class
-  # end
+  def test_invoice_returns_an_invoice
+    assert_equal Invoice, @tran.invoice.first.class
+  end
 
 end

@@ -1,6 +1,5 @@
-require_relative "../lib/invoice_repository"
-require_relative '../lib/sales_engine'
-require_relative '../lib/invoice'
+require "./lib/invoice_repository"
+require './lib/sales_engine'
 require 'minitest/autorun'
 
 class InvoiceRepositoryTest < Minitest::Test
