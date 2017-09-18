@@ -1,58 +1,22 @@
 require_relative "../lib/invoice_repository"
 require_relative '../lib/sales_engine'
-require 'csv'
+require_relative '../lib/invoice'
 require 'minitest/autorun'
 
 class InvoiceRepositoryTest < Minitest::Test
 
   def setup
-    @se = SalesEngine.from_csv({:invoices => "../data/fixtures/truncated/invoices.csv"})
-
+    se = SalesEngine.new({:items => "./test/fixtures/truncated_items.csv",
+                         :merchants => "./test/fixtures/truncated_merchants.csv",
+                         :invoices => "./test/fixtures/truncated_invoices.csv",
+                         :invoice_items => "./test/fixtures/truncated_invoice_items.csv",
+                         :transactions => "./test/fixtures/truncated_customers.csv",
+                         :customers =>  "./test/fixtures/truncated_transactions.csv"})
+    @repository = InvoiceRepository.new("./test/fixtures/truncated_merchants.csv" , se)
   end
 
-  def test_can_find_invoice_by_id
-    invoice = @se.invoices.find_by_id(6)
-    invoice_nil = @se.invoices.find_by_id()
-
-    assert_equal nil, invoice_nil
-
-    assert_equal 2, invoice
-
+  def test_csv_loads_csv_file
+    assert_equal CSV, @repository.csv_load("./test/fixtures/truncated_invoices.csv").class
   end
-
-  def test_can_find_invoice_by_customer_id
-    invoice = @se.invoices.find_by_customerid()
-    invoice_nil = @se.invoices.find_by_customerid()
-
-    assert_equal nil, invoice_nil
-    assert_equal 2, invoice
-
-  end
-
-  def test_can_find_invoice_by_merchant_id
-    invoice = @se.invoices.find_by_merchant_id()
-    invoice_empty_array = @se.invoices.find_by_merchant_id()
-
-    assert_equal nil, invoice_empty_array
-    assert_equal 2, invoice
-
-  end
-
-  def test_can_find_all_invoices
-    invoice = @se.invoices.all
-
-    assert_equal [], invoice
-
-  end
-
-  def test_can_find_invoice_by_status
-    invoice = @se.invoices.find_all_by_status()
-    invoice_empty = @se.invoices.find_all_by_status()
-
-    assert_equal [], invoice_empty
-    assert_equal 's', invoice
-  end
-
-
 
 end
