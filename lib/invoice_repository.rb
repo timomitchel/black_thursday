@@ -2,6 +2,7 @@ require_relative 'invoice'
 require 'csv'
 class InvoiceRepository
 attr_reader :data, :parent
+
   def initialize(data, parent)
     @data = csv_load(data).map {|row| Invoice.new(row, self)}
     @parent = parent
@@ -9,7 +10,7 @@ attr_reader :data, :parent
 
   def csv_load(file_path)
    CSV.open file_path, headers: true, header_converters: :symbol
- end
+  end
 
   def all
     @data
