@@ -49,4 +49,9 @@ class InvoiceRepositoryTest < Minitest::Test
     assert_equal "InvoiceRepository", repository.inspect
   end
 
+  def test_find_invoice_item_by_invoice_id_returns_invoice_item
+    assert_equal InvoiceItem, repository.find_by_id(1).invoice_items.first.class
+    assert_equal 1, repository.find_by_id(1).invoice_items.first.id
+  end
+
 end
