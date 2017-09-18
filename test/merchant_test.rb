@@ -70,4 +70,10 @@ class MerchantTest < Minitest::Test
 
     assert_equal true, mer.has_pending_invoices?
   end
+
+  def test_has_one_item
+    mer = Merchant.new({id: "623456789", name: "Shopin1901", created_at: "2010-12-10", updated_at: "2011-12-04"}, @repository)
+
+    assert_equal false, mer.has_one_item?
+  end
 end
