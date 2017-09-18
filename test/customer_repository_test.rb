@@ -44,7 +44,11 @@ class CustomerRepositoryTest < Minitest::Test
   end
 
   def test_if_inspect_works
+    assert_equal "CustomerRepository", repository.inspect
+  end
 
+  def test_find_merchant_by_customer_id
+    assert_equal Array, repository.find_merchant_by_customer_id(1).class
   end
 
 end
