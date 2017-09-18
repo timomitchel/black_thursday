@@ -42,5 +42,20 @@ class MerchantTest < Minitest::Test
 
   def test_items_return_item
     assert_equal Item, @mer.items.first.class
+    assert_equal 123456789, @mer.items.first.id
+  end
+
+  def test_invoices_return_invoice
+    mer = Merchant.new({id: "12335009", name: "Shopin1901", created_at: "2010-12-10", updated_at: "2011-12-04"}, @repository)
+
+    assert_equal Invoice, mer.invoices.first.class
+    assert_equal 7, mer.invoices.first.id
+  end
+
+  def test_customers_return_customer
+    mer = Merchant.new({id: "12335009", name: "Shopin1901", created_at: "2010-12-10", updated_at: "2011-12-04"}, @repository)
+
+    assert_equal Invoice, mer.invoices.first.class
+    assert_equal 7, mer.invoices.first.id
   end
 end
