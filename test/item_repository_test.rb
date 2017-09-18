@@ -21,4 +21,8 @@ class ItemRepositoryTest < Minitest::Test
     assert_equal Item, repository.find_by_id(123456789).class
     assert_equal "Christmas Sweaters", repository.find_by_id(123456789).name
   end
+
+  def test_all_if_returns_all_instances
+    assert_equal 12, repository.all.count
+  end
 end
