@@ -1,9 +1,11 @@
 require_relative "sales_engine"
 require_relative "math"
+require_relative "merchant_analyst"
 require "pry"
 
 class SalesAnalyst
   include Math
+  include MerchantAnalyst
 
    attr_reader :engine
 

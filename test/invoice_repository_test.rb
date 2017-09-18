@@ -51,7 +51,6 @@ class InvoiceRepositoryTest < Minitest::Test
 
     assert_equal [], invoice_empty
     assert_equal 's', invoice
-
   end
 
 
