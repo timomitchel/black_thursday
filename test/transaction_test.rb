@@ -53,16 +53,14 @@ class TransactionTest < Minitest::Test
     assert_equal @repo, @tran.parent
   end
 
-<<<<<<< HEAD
   def test_invoice_returns_an_invoice
     assert_equal Invoice, @tran.invoice.first.class
-=======
+
   def test_invoice_returns_an_invoice_with_correct_attributes
     assert_instance_of Invoice, @tran.invoice
     assert_equal 2179, @tran.invoice.id
     assert_equal 12334633, @tran.invoice.merchant_id
     assert_equal :returned, @tran.invoice.status
->>>>>>> 82f78e42d77689c7739ff3d2d077ac78b1b75f7f
   end
 
 end
