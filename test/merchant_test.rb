@@ -58,4 +58,16 @@ class MerchantTest < Minitest::Test
     assert_equal Invoice, mer.invoices.first.class
     assert_equal 7, mer.invoices.first.id
   end
+
+  def test_revenue_returns_revenue
+    mer = Merchant.new({id: "12336225", name: "Shopin1901", created_at: "2010-12-10", updated_at: "2011-12-04"}, @repository)
+
+    assert_equal 0, mer.revenue
+  end
+
+  def test_has_pending_invoices_return_array
+    mer = Merchant.new({id: "12336225", name: "Shopin1901", created_at: "2010-12-10", updated_at: "2011-12-04"}, @repository)
+
+    assert_equal true, mer.has_pending_invoices?
+  end
 end
