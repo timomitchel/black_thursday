@@ -19,4 +19,21 @@ class InvoiceRepositoryTest < Minitest::Test
     assert_equal CSV, repository.csv_load("./test/fixtures/truncated_invoices.csv").class
   end
 
+  def test_all_returns_data
+    assert_equal repository.data ,repository.all
+  end
+
+  def test_find_by_id_returns_invoice
+    assert_equal Invoice, repository.find_by_id(1).class
+  end
+
+  def test_find_all_by_customer_id_returns_array
+    assert_equal Array, repository.find_all_by_customer_id(1).class
+    assert_equal Invoice, repository.find_all_by_customer_id(1).first.class
+  end
+
+  def test_
+
+  end
+
 end
