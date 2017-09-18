@@ -44,7 +44,19 @@ attr_reader :item
 
   def test_unit_price
     assert_equal BigDecimal, item.unit_price.class
+    assert_equal 0.12111e3, item.unit_price
+  end
 
+  def test_created_at_returns_time_class
+    assert_equal Time, item.created_at.class
+    assert_equal 12, item.created_at.month
+    assert_equal 10, item.created_at.day
+  end
+
+  def test_updated_at_returns_time_class
+    assert_equal Time, item.updated_at.class
+    assert_equal 12, item.updated_at.month
+    assert_equal 4, item.updated_at.day
   end
 
 end
