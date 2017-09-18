@@ -28,4 +28,23 @@ class CustomerRepositoryTest < Minitest::Test
     assert_equal @se, repository.parent
   end
 
+  def test_find_by_id_returns_customer
+    assert_equal Customer, repository.find_by_id(1).class
+    assert_equal 1, repository.find_by_id(1).id
+  end
+
+  def test_find_all_by_first_name_returns_customer
+    assert_equal Customer, repository.find_all_by_first_name("Joey").first.class
+    assert_equal 1, repository.find_all_by_first_name("Joey").first.id
+  end
+
+  def test_find_all_by_last_name_returns_customer
+    assert_equal Customer, repository.find_all_by_last_name("Ondricka").first.class
+    assert_equal 1, repository.find_all_by_last_name("Ondricka").first.id
+  end
+
+  def test_if_inspect_works
+
+  end
+
 end
