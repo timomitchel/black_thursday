@@ -25,4 +25,14 @@ class ItemRepositoryTest < Minitest::Test
   def test_all_if_returns_all_instances
     assert_equal 12, repository.all.count
   end
+
+  def test_find_all_with_description_returns_description
+    assert_equal Item, repository.find_all_with_description("Ugly necklaces for everyone").first.class
+    assert_equal "Christmas necklaces", repository.find_all_with_description("Ugly necklaces for everyone").first.name
+  end
+
+  def test_find_all_by_price_returns_item
+    assert_equal Item, repository.find_all_by_price(420.00).first.class
+    assert_equal "Christmas skirts", repository.find_all_by_price(420.00).first.name
+  end
 end
