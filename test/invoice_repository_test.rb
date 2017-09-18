@@ -54,4 +54,12 @@ class InvoiceRepositoryTest < Minitest::Test
     assert_equal 1, repository.find_by_id(1).invoice_items.first.id
   end
 
+  def test_find_transaction_by_invoice_id_returns_array
+    assert_equal Array, repository.find_by_id(2).transactions.class
+  end
+
+  def test_find_customer_by_invoice_id_returns_array
+    assert_equal Customer, repository.find_by_id(2).customer.class
+    assert_equal 1, repository.find_by_id(2).customer.id
+  end
 end
