@@ -51,11 +51,13 @@ class MerchantRepositoryTest < Minitest::Test
   end
 
   def test_find_items_by_merchant_return_items
-
+    assert_equal Item, repository.find_items_by_merchant(12334112).first.class
+    assert_equal 1, repository.find_items_by_merchant(12334112).count
   end
 
-  def test_
-
+  def test_find_invoices_by_merchant_return_invoices
+    assert_equal Invoice, repository.find_invoices_by_merchant(12334112).first.class
+    assert_equal 1, repository.find_invoices_by_merchant(12334112).count
   end
 
 end
