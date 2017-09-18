@@ -14,7 +14,7 @@ attr_reader :item
                          :transactions => "./test/fixtures/truncated_customers.csv",
                          :customers =>  "./test/fixtures/truncated_transactions.csv"})
     @repository = ItemRepository.new("./test/fixtures/truncated_items.csv" , @se)
-    @item = Item.new({id: "123456789", name: "Christmas Sweaters", description: "Ugly sweaters for everyone", unit_price: "12111", merchant_id: "12341234", created_at: "2010-12-10", updated_at: "2011-12-04"}, @repository)
+    @item = Item.new({id: "123456789", name: "Christmas Sweaters", description: "Ugly sweaters for everyone", unit_price: "12111", merchant_id: "12334319", created_at: "2010-12-10", updated_at: "2011-12-04"}, @repository)
   end
 
   def test_if_class_exist
@@ -57,6 +57,23 @@ attr_reader :item
     assert_equal Time, item.updated_at.class
     assert_equal 12, item.updated_at.month
     assert_equal 4, item.updated_at.day
+  end
+
+  def test_merchant_id_returns_id
+    assert_equal 12334319, item.merchant_id
+  end
+
+  def test_for_parent_method_returns_item_repo
+    assert_instance_of ItemRepository, item.parent
+  end
+
+  def test_merchant_returns_merchant_class
+    assert_equal Merchant, item.merchant.class
+  end
+
+  def test_unit_price_returns_float
+    assert_equal Float, item.unit_price_to_dollars.class
+    assert_equal 121.11, item.unit_price_to_dollars
   end
 
 end
