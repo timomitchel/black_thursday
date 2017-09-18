@@ -22,8 +22,34 @@ class TransactionRepositoryTest < Minitest::Test
     assert_instance_of TransactionRepository, repository
   end
 
-  # def test_find_invoice_by_id_works
-  #   assert_equal 3715, repository.find_invoice_by_transaction_id(5)
-  # end
+  def test_find_invoice_by_id_works
+    assert_equal Invoice, repository.find_invoice_by_transaction_id(5).class
+    assert_equal 1, repository.find_invoice_by_transaction_id(5).customer_id
+    assert_nil nil, repository.find_invoice_by_transaction_id(9324832948)
+  end
+
+  def test_find_by_id_works
+    assert_equal Transaction, repository.find_by_id(4).class
+    assert_equal 4126, repository.find_by_id(4).invoice_id
+    assert_nil nil, repository.find_by_id('s')
+  end
+
+  def test_find_all_by_invoice_id_works_and_returns_array
+    assert_equal Array, repository.find_all_by_invoice_id(2179).class
+    assert_equal 1, repository.find_all_by_invoice_id(2179).length
+    assert_equal [], repository.find_all_by_invoice_id('t')
+  end
+
+  def test_find_all_by_credit_card_number_works_and_returns_array
+    assert_equal Array, repository.find_all_by_credit_card_number(4068631943231473).class
+    assert_equal 1, repository.find_all_by_credit_card_number(4068631943231473).length
+    assert_equal [], repository.find_all_by_credit_card_number('2048t832080302')
+  end
+
+  def test_find_all_by_result_returns_array_and_all_with_matching_status
+    assert_equal Array, repository.find_all_by_result('failed').class
+    assert_equal 22, repository.find_all_by_result('failed').length
+    assert_equal [], repository.find_all_by_result(23)
+  end
 
 end

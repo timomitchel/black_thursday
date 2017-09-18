@@ -34,7 +34,7 @@ class MerchantRepositoryTest < Minitest::Test
     assert_nil nil, repository.find_by_id(12)
   end
 
-  def test_all_if_returns_all_instances
+  def test_all_returns_all_instances
     assert_equal 59, repository.all.count
   end
 
