@@ -3,7 +3,7 @@ require 'csv'
 class ItemRepository
 
   attr_reader :data, :parent
-  def initialize(data, parent)
+  def initialize(data, parent=nil)
     @data = csv_load(data).map {|row| Item.new(row, self)}
     @parent = parent
   end
