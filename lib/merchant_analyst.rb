@@ -81,4 +81,15 @@ module MerchantAnalyst
        engine.items.find_by_id(invoice_item.item_id)
     end
   end
+
+  def best_item_for_merchant(id)
+    merchant = engine.merchants.find_by_id(id)
+    merchant_items = merchant.items
+    merchant_invoices = merchant.invoices.select{|inv| inv.is_paid_in_full?}
+    items = merchant_invoices.map {|invoice| invoice.invoice_items}.flatten
+    items = items.map {|invoice| [invoice.item_id, invoice.price]}
+    item = items.max_by{|invoice| invoice[1]}
+    engine.items.find_by_id(item[0])
+    # binding.pry
+  end
 end

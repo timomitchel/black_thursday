@@ -26,4 +26,8 @@ class Merchant
   def revenue
     invoices.map { |invoice| invoice.total }.reduce(:+)
   end
+
+  def has_one_item?
+    items.count == 1
+  end
 end
