@@ -36,8 +36,6 @@ module MerchantAnalyst
     total.map{|invoice| engine.merchants.find_by_id(invoice.merchant_id)}.uniq
   end
 
-
-
   def merchants_with_only_one_item
     one_item
   end
