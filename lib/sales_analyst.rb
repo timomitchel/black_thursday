@@ -64,7 +64,7 @@ class SalesAnalyst
 
    def invoice_status(input)
      all = engine.invoices.all.select do |invoice|
-       invoice.status == input
+       invoice.status.to_sym == input
      end
      ((all.count.to_f / engine.invoices.all.count) * 100).round(2)
    end

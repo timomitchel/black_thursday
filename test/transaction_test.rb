@@ -1,3 +1,4 @@
+
 require 'minitest/autorun'
 require_relative "../lib/transaction"
 require_relative "../lib/transaction_repository"
@@ -55,6 +56,7 @@ class TransactionTest < Minitest::Test
 
   def test_invoice_returns_an_invoice
     assert_equal Invoice, @tran.invoice.first.class
+  end
 
   def test_invoice_returns_an_invoice_with_correct_attributes
     assert_instance_of Invoice, @tran.invoice
