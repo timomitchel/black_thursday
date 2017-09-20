@@ -78,7 +78,6 @@ module MerchantAnalyst
   end
 
   def best_item_for_merchant(id)
-    binding.pry
     merchant = engine.merchants.find_by_id(id)
     merchant_items = merchant.items
     merchant_invoices = merchant.invoices.select{|inv| inv.is_paid_in_full?}
