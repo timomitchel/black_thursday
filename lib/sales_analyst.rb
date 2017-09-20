@@ -90,11 +90,8 @@ class SalesAnalyst
    def revenues(id)
      revenue = engine.merchants.find_by_id(id).revenue.to_f.round(2)
    end
-<<<<<<< HEAD
 
    def best_item_for_merchant(merchant_id)
      engine.merchants.find_by_id(merchant_id).invoices
    end
-=======
->>>>>>> ef19d11d490bfe591c1df860f08f4817db626a91
 end
