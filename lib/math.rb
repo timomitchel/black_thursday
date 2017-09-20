@@ -1,5 +1,3 @@
-require 'pry'
-
 module Math
 
   def all_merchants
