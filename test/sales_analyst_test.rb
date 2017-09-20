@@ -108,33 +108,33 @@ class SalesAnalystTest < Minitest::Test
   end
 
   def test_top_revenue_earners
-    assert_equal 10, @sa.top_revenue_earners(10)
-    assert_equal 20, @sa.top_revenue_earners
-    assert_equal Merchant, @sa.top_recenue_earners.first.first.class
+    assert_equal 10, @sa.top_revenue_earners(10).count
+    assert_equal 20, @sa.top_revenue_earners.count
+    assert_equal Merchant, @sa.top_revenue_earners.first.class
   end
 
   def test_merchants_with_pending_invoices_return_array
-    assert_equal , @sa.merchants_with_pending_invoices
+    assert_equal 467, @sa.merchants_with_pending_invoices.length
   end
 
   def test_merchants_with_only_one_item
-    assert_equal ,@sa.merchants_with_only_one_item
+    assert_equal 243,@sa.merchants_with_only_one_item.length
   end
 
   def test_merchants_with_only_one_item_registered_in_month_return_array
-    assert_equal , @sa.merchants_with_only_one_item_registered_in_month("June")
+    assert_equal 18, @sa.merchants_with_only_one_item_registered_in_month("June").length
   end
 
   def test_revenue_by_merchant_return_the_total_revenue
-    assert_equal , @sa.revenue_by_merchant(merchant_id)
+    assert_equal 0.7342608e5, @sa.revenue_by_merchant(12334113)
   end
 
   def test_most_sold_item_for_merchant_returns_array_or_single_item
-    assert_equal , @sa..most_sold_item_for_merchant(merchant_id)
+    assert_equal 263524984, @sa.most_sold_item_for_merchant(12334189).first.id
   end
 
   def test_best_item_for_merchant_returns_most_profitable_item
-    assert_equal , @sa.best_item_for_merchant(merchant_id)
+    assert_equal 263516130, @sa.best_item_for_merchant(12334189).id
   end
 
 end

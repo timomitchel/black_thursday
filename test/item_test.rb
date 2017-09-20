@@ -4,7 +4,7 @@ require_relative "../lib/item_repository"
 require_relative "../lib/sales_engine"
 
 class ItemTest < Minitest::Test
-attr_reader :item
+  attr_reader :item
 
   def setup
     @se = SalesEngine.new({:items => "./test/fixtures/truncated_items.csv",
