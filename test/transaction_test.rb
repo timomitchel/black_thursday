@@ -1,4 +1,3 @@
-
 require 'minitest/autorun'
 require_relative "../lib/transaction"
 require_relative "../lib/transaction_repository"
