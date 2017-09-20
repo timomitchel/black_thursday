@@ -55,18 +55,6 @@ class SalesAnalystTest < Minitest::Test
     assert_equal expected, @sa.golden_items.length
   end
 
-  def test_average_invoices_per_merchant
-    expected = 10.49
-
-    assert_equal expected, @sa.average_invoices_per_merchant
-  end
-
-  def test_if_average_invoices_per_merchant_standard_deviation
-    expected = 3.29
-
-    assert_equal expected, @sa.average_invoices_per_merchant_standard_deviation
-  end
-
   def test_top_merchants_by_invoice_count
     expected = 12
 
@@ -92,43 +80,6 @@ class SalesAnalystTest < Minitest::Test
     assert_equal expected, @sa.invoice_status(:pending)
     assert_equal 56.95, @sa.invoice_status(:shipped)
     assert_equal 13.5, @sa.invoice_status(:returned)
-  end
-
-  def test_total_revenue_by_date
-    date = Time.parse("2009-02-07")
-    expected = 21067.77
-
-    assert_equal expected , @sa.total_revenue_by_date(date)
-  end
-
-  def test_top_revenue_earners
-    assert_equal 10, @sa.top_revenue_earners(10).count
-    assert_equal 20, @sa.top_revenue_earners.count
-    assert_equal Merchant, @sa.top_revenue_earners.first.class
-  end
-
-  def test_merchants_with_pending_invoices_return_array
-    assert_equal 467, @sa.merchants_with_pending_invoices.length
-  end
-
-  def test_merchants_with_only_one_item
-    assert_equal 243,@sa.merchants_with_only_one_item.length
-  end
-
-  def test_merchants_with_only_one_item_registered_in_month_return_array
-    assert_equal 18, @sa.merchants_with_only_one_item_registered_in_month("June").length
-  end
-
-  def test_revenue_by_merchant_return_the_total_revenue
-    assert_equal 0.7342608e5, @sa.revenue_by_merchant(12334113)
-  end
-
-  def test_most_sold_item_for_merchant_returns_array_or_single_item
-    assert_equal 263524984, @sa.most_sold_item_for_merchant(12334189).first.id
-  end
-
-  def test_best_item_for_merchant_returns_most_profitable_item
-    assert_equal 263516130, @sa.best_item_for_merchant(12334189).id
   end
 
 end
