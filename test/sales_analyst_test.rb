@@ -109,7 +109,7 @@ class SalesAnalystTest < Minitest::Test
 
   def test_top_revenue_earners
     assert_equal 10, @sa.top_revenue_earners(10)
-    assert_equal 20, @sa.top_recenue_earners
+    assert_equal 20, @sa.top_revenue_earners
     assert_equal Merchant, @sa.top_recenue_earners.first.first.class
   end
 
