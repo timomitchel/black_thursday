@@ -2,11 +2,9 @@ require 'minitest/autorun'
 require_relative "../lib/transaction"
 require_relative "../lib/transaction_repository"
 require_relative "../lib/sales_engine"
-<<<<<<< HEAD
 require "pry"
 require_relative 'test_helper'
-=======
->>>>>>> 1e3e70d7e19d30205679363f32c9686dc4d7ac1e
+
 
 class TransactionTest < Minitest::Test
 
