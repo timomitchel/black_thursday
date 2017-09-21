@@ -86,5 +86,4 @@ module MerchantAnalyst
     item = items.max_by{|invoice| invoice[1]}
     engine.items.find_by_id(item[0])
   end
-  
 end

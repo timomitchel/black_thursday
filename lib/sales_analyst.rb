@@ -4,7 +4,6 @@ require_relative "merchant_analyst"
 
 
 class SalesAnalyst
-  
   include Math
   include MerchantAnalyst
 
