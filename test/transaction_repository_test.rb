@@ -3,7 +3,9 @@ require_relative "../lib/transaction_repository"
 require_relative "../lib/sales_engine"
 
 class TransactionRepositoryTest < Minitest::Test
+
   attr_reader :repository
+  
   def setup
     se = SalesEngine.new({:items => "./test/fixtures/truncated_items.csv",
                          :merchants => "./test/fixtures/truncated_merchants.csv",

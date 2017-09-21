@@ -3,6 +3,7 @@ require './lib/sales_engine'
 require 'minitest/autorun'
 
 class InvoiceItemRepositoryTest < Minitest::Test
+  
   attr_reader :repository
 
   def setup

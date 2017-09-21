@@ -1,7 +1,8 @@
 require_relative 'invoice'
 require 'csv'
+
 class InvoiceRepository
-attr_reader :data, :parent
+  attr_reader :data, :parent
 
   def initialize(data, parent)
     @data = csv_load(data).map {|row| Invoice.new(row, self)}

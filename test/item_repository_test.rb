@@ -3,7 +3,9 @@ require 'minitest/autorun'
 require './lib/sales_engine'
 
 class ItemRepositoryTest < Minitest::Test
+
   attr_reader :repository
+
   def setup
     @repository = ItemRepository.new("./test/fixtures/truncated_items.csv" , self)
   end
@@ -78,4 +80,5 @@ class ItemRepositoryTest < Minitest::Test
   def test_inspect_method_works
     assert_equal "ItemRepository", repository.inspect
   end
+  
 end

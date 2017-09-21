@@ -3,6 +3,7 @@ require_relative "../lib/sales_engine"
 require_relative "../lib/sales_analyst"
 
 class MerchantAnalystTest < Minitest::Test
+  
   def setup
     @se = SalesEngine.from_csv({
     :items => "./data/items.csv",

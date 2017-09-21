@@ -37,4 +37,5 @@ class SalesEngineTest < Minitest::Test
 
     assert_equal merchant, mr.find_by_name("CJsDecor")
   end
+  
 end

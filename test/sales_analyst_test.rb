@@ -3,6 +3,7 @@ require_relative '../lib/sales_engine'
 require 'minitest/autorun'
 
 class SalesAnalystTest < Minitest::Test
+  
   def setup
     @se = SalesEngine.from_csv({
     :items => "./data/items.csv",
