@@ -3,6 +3,7 @@ require_relative "../lib/transaction"
 require_relative "../lib/transaction_repository"
 require_relative "../lib/sales_engine"
 require "pry"
+require_relative 'test_helper'
 
 class TransactionTest < Minitest::Test
 
@@ -54,7 +55,7 @@ class TransactionTest < Minitest::Test
   end
 
   def test_invoice_returns_an_invoice
-    assert_equal Invoice, @tran.invoice.first.class
+    assert_equal Invoice, @tran.invoice.class
   end
 
   def test_invoice_returns_an_invoice_with_correct_attributes

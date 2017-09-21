@@ -2,6 +2,7 @@ require 'minitest/autorun'
 require_relative "../lib/invoice_item"
 require_relative "../lib/invoice_item_repository"
 require_relative "../lib/sales_engine"
+require_relative 'test_helper'
 
 class InvoiceItemTest < Minitest::Test
 attr_reader :invoice_item

@@ -1,6 +1,7 @@
 require 'minitest/autorun'
 require_relative "../lib/merchant_repository"
 require_relative "../lib/sales_engine"
+require_relative 'test_helper'
 
 class MerchantRepositoryTest < Minitest::Test
   attr_reader :repository

@@ -91,7 +91,4 @@ class SalesAnalyst
      revenue = engine.merchants.find_by_id(id).revenue.to_f.round(2)
    end
 
-   def best_item_for_merchant(merchant_id)
-     engine.merchants.find_by_id(merchant_id).invoices
-   end
 end

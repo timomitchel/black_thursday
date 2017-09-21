@@ -1,6 +1,7 @@
 require "./lib/invoice_item_repository"
 require './lib/sales_engine'
 require 'minitest/autorun'
+require_relative 'test_helper'
 
 class InvoiceItemRepositoryTest < Minitest::Test
   attr_reader :repository

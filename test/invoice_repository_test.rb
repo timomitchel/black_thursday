@@ -1,6 +1,7 @@
 require "./lib/invoice_repository"
 require './lib/sales_engine'
 require 'minitest/autorun'
+require_relative 'test_helper'
 
 class InvoiceRepositoryTest < Minitest::Test
   attr_reader :repository
@@ -12,7 +13,7 @@ class InvoiceRepositoryTest < Minitest::Test
                          :invoice_items => "./test/fixtures/truncated_invoice_items.csv",
                          :transactions => "./test/fixtures/truncated_customers.csv",
                          :customers =>  "./test/fixtures/truncated_transactions.csv"})
-    @repository = InvoiceRepository.new("./test/fixtures/truncated_invoices.csv" , se)
+    @repository = InvoiceRepository.new("./test/fixtures/truncated_invoices.csv" , @se)
   end
 
   def test_csv_loads_csv_file

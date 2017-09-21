@@ -1,5 +1,6 @@
 require 'minitest/autorun'
 require_relative "../lib/sales_engine"
+require_relative 'test_helper'
 
 class SalesEngineTest < Minitest::Test
 

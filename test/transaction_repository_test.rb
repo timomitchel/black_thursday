@@ -1,6 +1,7 @@
 require 'minitest/autorun'
 require_relative "../lib/transaction_repository"
 require_relative "../lib/sales_engine"
+require_relative 'test_helper'
 
 class TransactionRepositoryTest < Minitest::Test
   attr_reader :repository
@@ -36,7 +37,7 @@ class TransactionRepositoryTest < Minitest::Test
 
   def test_find_all_by_invoice_id_works_and_returns_array
     assert_equal Array, repository.find_all_by_invoice_id(2179).class
-    assert_equal 1, repository.find_all_by_invoice_id(2179).length
+    assert_equal 2, repository.find_all_by_invoice_id(2179).length
     assert_equal [], repository.find_all_by_invoice_id('t')
   end
 

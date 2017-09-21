@@ -1,6 +1,7 @@
 require_relative '../lib/sales_analyst'
 require_relative '../lib/sales_engine'
 require 'minitest/autorun'
+require_relative 'test_helper'
 
 class SalesAnalystTest < Minitest::Test
   def setup
