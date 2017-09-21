@@ -4,6 +4,7 @@ require 'minitest/autorun'
 require_relative 'test_helper'
 
 class InvoiceItemRepositoryTest < Minitest::Test
+  
   attr_reader :repository
 
   def setup

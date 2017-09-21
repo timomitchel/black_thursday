@@ -1,5 +1,5 @@
-require 'pry'
 module MerchantAnalyst
+
   def total_revenue_by_date(date)
     all = engine.invoices.all.select do |invoice|
       invoice.created_at == date
@@ -86,4 +86,5 @@ module MerchantAnalyst
     item = items.max_by{|invoice| invoice[1]}
     engine.items.find_by_id(item[0])
   end
+  
 end

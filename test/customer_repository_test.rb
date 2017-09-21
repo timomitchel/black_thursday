@@ -5,6 +5,7 @@ require_relative "../lib/sales_engine"
 require_relative 'test_helper'
 
 class CustomerRepositoryTest < Minitest::Test
+  
   attr_reader :repository
 
   def setup

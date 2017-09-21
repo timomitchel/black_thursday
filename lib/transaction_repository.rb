@@ -2,6 +2,7 @@ require_relative 'transaction'
 require 'csv'
 
 class TransactionRepository
+  
   attr_reader :data, :parent
 
   def initialize(data, parent)

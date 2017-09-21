@@ -4,6 +4,7 @@ require 'minitest/autorun'
 require_relative 'test_helper'
 
 class SalesAnalystTest < Minitest::Test
+  
   def setup
     @se = SalesEngine.from_csv({
     :items => "./data/items.csv",

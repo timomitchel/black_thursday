@@ -4,7 +4,9 @@ require_relative "../lib/sales_engine"
 require_relative 'test_helper'
 
 class MerchantRepositoryTest < Minitest::Test
+
   attr_reader :repository
+  
   def setup
     se = SalesEngine.new({:items => "./test/fixtures/truncated_items.csv",
                          :merchants => "./test/fixtures/truncated_merchants.csv",
